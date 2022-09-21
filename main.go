@@ -1,7 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"h-ayat.github.io/tim/config"
+)
 
 func main() {
-	fmt.Println("Hello")
+	fmt.Println(config.BaseAddress())
 }
