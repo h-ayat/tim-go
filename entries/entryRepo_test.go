@@ -1,7 +1,6 @@
 package entries
 
 import (
-	"fmt"
 	"os"
 	"testing"
 
@@ -10,8 +9,6 @@ import (
 )
 
 func TestEntryCRUD(t *testing.T) {
-
-	DeleteTodayFile()
 
 	allEntries := Read(cal.CurrentDate())
 	if len(allEntries) != 0 {
@@ -28,14 +25,20 @@ func TestEntryCRUD(t *testing.T) {
 		t.Error("Expected 3 elements")
 	}
 
-	DeleteTodayFile()
-
 }
 
 func TestMain(m *testing.M) {
 	os.Setenv(util.BasePathENV, "/tmp/tim/")
-	fmt.Println("Set up stuff for tests here")
+	deleteTodayFile()
 	exitVal := m.Run()
-	fmt.Println("Clean up stuff after tests here")
+	deleteTodayFile()
 	os.Exit(exitVal)
+}
+
+func deleteTodayFile() {
+	deleteFile(cal.CurrentDate())
+}
+
+func deleteFile(date cal.Date) {
+	util.Delete(entriesDatePath(date))
 }

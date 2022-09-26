@@ -15,11 +15,9 @@ func TestTags(t *testing.T) {
 		fmt.Println(allTags)
 		t.Error("Expected no tags")
 	}
-	DeleteTagFile()
 	AddTag("testA")
 	AddTag("testB")
 	allTags = LoadAllTags()
-	DeleteTagFile()
 
 	if len(allTags) != 2 {
 		t.Error("Expected two tags")
@@ -28,8 +26,12 @@ func TestTags(t *testing.T) {
 
 func TestMain(m *testing.M) {
 	os.Setenv(util.BasePathENV, "/tmp/tim/")
-	fmt.Println("Set up stuff for tests here")
+	deleteTagFile()
 	exitVal := m.Run()
-	fmt.Println("Clean up stuff after tests here")
+	deleteTagFile()
 	os.Exit(exitVal)
+}
+
+func deleteTagFile() {
+	util.Delete(path())
 }

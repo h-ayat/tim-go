@@ -52,11 +52,3 @@ func Read(date cal.Date) []Entry {
 	}
 	return data
 }
-
-func DeleteTodayFile() {
-	DeleteFile(cal.CurrentDate())
-}
-
-func DeleteFile(date cal.Date) {
-	util.Delete(date.DateAddress())
-}

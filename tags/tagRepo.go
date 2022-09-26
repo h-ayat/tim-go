@@ -13,7 +13,3 @@ func LoadAllTags() []string {
 func AddTag(tag string) {
 	util.Append(path(), tag)
 }
-
-func DeleteTagFile() {
-	util.Delete(path())
-}
