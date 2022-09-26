@@ -11,7 +11,7 @@ import (
 
 type Entry struct {
 	Time    string
-	Tags    []string
+	Tag     string
 	Message string
 }
 
@@ -27,7 +27,7 @@ func entriesDatePath(date cal.Date) string {
 }
 
 func AddNewEntry(message string) {
-	entry := Entry{cal.CurrentTime().Pretty(), []string{}, message}
+	entry := Entry{Time: cal.CurrentTime().Pretty(), Message: message}
 	date := cal.CurrentDate()
 
 	s, err := json.Marshal(entry)
