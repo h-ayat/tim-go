@@ -2,6 +2,7 @@ package entries
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"time"
 
@@ -10,6 +11,7 @@ import (
 )
 
 type Entry struct {
+	Issue   string
 	Time    string
 	Tag     string
 	Message string
@@ -35,6 +37,7 @@ func AddNewEntry(message string) {
 		log.Fatal(err)
 	}
 
+	fmt.Println(entriesDatePath(date))
 	util.Append(entriesDatePath(date), string(s))
 }
 
